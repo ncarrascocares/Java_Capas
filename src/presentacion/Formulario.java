@@ -85,6 +85,11 @@ public class Formulario extends javax.swing.JFrame {
         });
 
         limpiar_btn.setText("Limpiar");
+        limpiar_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limpiar_btnActionPerformed(evt);
+            }
+        });
 
         buscar_btn.setText("Buscar");
         buscar_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -254,6 +259,13 @@ public class Formulario extends javax.swing.JFrame {
         modelo = dbcl.lista_grilla();
         this.jTable1.setModel(modelo);
     }//GEN-LAST:event_eliminar_btnActionPerformed
+
+    private void limpiar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiar_btnActionPerformed
+        id_txt.setText("");
+        nombre_txt.setText("");
+        direccion_txt.setText("");
+        saldo_txt.setText("");
+    }//GEN-LAST:event_limpiar_btnActionPerformed
 
     /**
      * @param args the command line arguments
