@@ -78,6 +78,11 @@ public class Formulario extends javax.swing.JFrame {
         });
 
         eliminar_btn.setText("Eliminar");
+        eliminar_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminar_btnActionPerformed(evt);
+            }
+        });
 
         limpiar_btn.setText("Limpiar");
 
@@ -236,6 +241,19 @@ public class Formulario extends javax.swing.JFrame {
         modelo = dbcl.lista_grilla();
         this.jTable1.setModel(modelo);
     }//GEN-LAST:event_modificar_btnActionPerformed
+
+    private void eliminar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar_btnActionPerformed
+        dbcl = new DBCliente();
+        try {
+            int id = Integer.parseInt(this.id_txt.getText());
+            dbcl.eliminar_cliente(id);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null,"Error al eliminar cliente" + ex);
+        }
+        
+        modelo = dbcl.lista_grilla();
+        this.jTable1.setModel(modelo);
+    }//GEN-LAST:event_eliminar_btnActionPerformed
 
     /**
      * @param args the command line arguments
