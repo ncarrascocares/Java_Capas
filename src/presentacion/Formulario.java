@@ -71,6 +71,11 @@ public class Formulario extends javax.swing.JFrame {
         });
 
         modificar_btn.setText("Modificar");
+        modificar_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificar_btnActionPerformed(evt);
+            }
+        });
 
         eliminar_btn.setText("Eliminar");
 
@@ -208,6 +213,29 @@ public class Formulario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error en el Id del cliente" + e);
         }
     }//GEN-LAST:event_buscar_btnActionPerformed
+
+    private void modificar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_btnActionPerformed
+        dbcl = new DBCliente();
+        Cliente clte = new Cliente();
+        String id, nombre, direccion, saldo;
+        int _id;
+        float _saldo;
+        
+        id = this.id_txt.getText();
+        nombre = this.nombre_txt.getText();
+        direccion = this.direccion_txt.getText();
+        saldo = this.saldo_txt.getText();
+        //pasamos los valores de texto a numero
+        _id = Integer.parseInt(id);
+        _saldo = Float.parseFloat(saldo);
+        clte.setId(_id);
+        clte.setNombre(nombre);
+        clte.setDireccion(direccion);
+        clte.setSaldo(_saldo);
+        dbcl.modificar_cliente(clte);
+        modelo = dbcl.lista_grilla();
+        this.jTable1.setModel(modelo);
+    }//GEN-LAST:event_modificar_btnActionPerformed
 
     /**
      * @param args the command line arguments
