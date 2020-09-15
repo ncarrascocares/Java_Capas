@@ -6,6 +6,7 @@
 package presentacion;
 
 import datos.DBCliente;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import negocio.Cliente;
 
@@ -76,6 +77,11 @@ public class Formulario extends javax.swing.JFrame {
         limpiar_btn.setText("Limpiar");
 
         buscar_btn.setText("Buscar");
+        buscar_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscar_btnActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -187,6 +193,21 @@ public class Formulario extends javax.swing.JFrame {
         this.jTable1.setModel(modelo);
         
     }//GEN-LAST:event_agregar_btnActionPerformed
+
+    private void buscar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_btnActionPerformed
+       dbcl = new DBCliente();
+        try {
+            int id = Integer.parseInt(this.id_txt.getText());
+            Cliente clibus = dbcl.buscar_cliente(id);
+                if(clibus.getId()!=0){
+                    this.nombre_txt.setText(clibus.getNombre());
+                    this.direccion_txt.setText(clibus.getDireccion());
+                    this.saldo_txt.setText(String.valueOf(clibus.getSaldo()));
+                }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error en el Id del cliente" + e);
+        }
+    }//GEN-LAST:event_buscar_btnActionPerformed
 
     /**
      * @param args the command line arguments
