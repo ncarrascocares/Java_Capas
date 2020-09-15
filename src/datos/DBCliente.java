@@ -60,5 +60,26 @@ public class DBCliente implements Interface_cliente {
         
         return modelo;
     }
-            
+    
+    public Cliente buscar_cliente(int _id){
+        Cliente cliente = new Cliente();
+        try {
+            String sql = "SELECT * FROM cliente WHERE id_cliente = ?";
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1,_id);
+            ResultSet resulset = pstmt.executeQuery();
+            if(resulset.next()){
+                cliente.setId(resulset.getInt("id_cliente"));
+                cliente.setNombre(resulset.getString("nombre_cliente"));
+                cliente.setDireccion(resulset.getString("direccion_cliente"));
+                cliente.setSaldo(resulset.getFloat("saldo_cliente"));
+            }else{
+                JOptionPane.showMessageDialog(null, "Cliente no existe");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al buscar" + ex);
+        }
+        
+        return cliente;
+    }    
 }
